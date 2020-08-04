@@ -30,5 +30,6 @@ void USpawnLocation::BeginPlay()
 {
 	Super::BeginPlay();
 
-	
+	StaticMeshComponent->SetStaticMesh(nullptr);
+	StaticMeshComponent->UnregisterComponent();
 }
