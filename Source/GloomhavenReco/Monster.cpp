@@ -26,4 +26,3 @@ void AMonster::BeginPlay()
 	MonsterName = GameMode->GetRandomMonsterName();
 	SwitchToTexture();
 }
-

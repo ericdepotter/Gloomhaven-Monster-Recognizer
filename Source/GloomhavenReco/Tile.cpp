@@ -72,6 +72,15 @@ void ATile::PopulateTile(FVector CameraPosition, int NumberMonsters)
 
 void ATile::SwitchToMask() 
 {
+	if (MaskMaterial)
+	{
+		StaticMeshComponent->SetMaterial(0, MaskMaterial);
+	}
+	else 
+	{
+		UE_LOG(LogTemp, Error, TEXT("Tile '%s' does not have a mask material"), *GetName());
+	}
+
 	for (AMonster* Monster: Monsters)
 	{
 		Monster->SwitchToMask();

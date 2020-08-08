@@ -7,6 +7,7 @@
 #include "Tile.generated.h"
 
 class AMonster;
+class UMaterialInterface;
 class USpawnLocation;
 class UStaticMeshComponent;
 
@@ -44,4 +45,10 @@ private:
 
 	UPROPERTY(BlueprintReadWrite, Category = Monster, meta = (AllowPrivateAccess = "true"))
 	TArray<AMonster*> Monsters;
+
+	UPROPERTY(BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
+	UMaterialInterface* TileMaterial = nullptr;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
+	UMaterialInterface* MaskMaterial = nullptr;
 };
