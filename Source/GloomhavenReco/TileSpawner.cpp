@@ -25,6 +25,7 @@ ATile* ATileSpawner::SpawnTile()
 	if (CurrentTile)
 	{
 		CurrentTile->SetActorLocation(FVector(0, 0, -1000));
+		CurrentTile->ClearTile();
 	}
 
 	CurrentTile = Cast<ATile>(AllTiles[FMath::RandRange(0, AllTiles.Num() - 1)]);

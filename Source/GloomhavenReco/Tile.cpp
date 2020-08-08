@@ -1,7 +1,9 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "SpawnLocation.h"
+#include "Monster.h"
 #include "Tile.h"
+#include "Kismet/KismetMathLibrary.h"
 #include "Math/UnrealMathUtility.h"
 
 // Sets default values
@@ -46,6 +48,11 @@ TArray<USpawnLocation*> ATile::GetSpawnLocations() const
 
 void ATile::PopulateTile(FVector CameraPosition, int NumberMonsters) 
 {
+	if (Monsters.Num() > 0)
+	{
+		ClearTile();
+	}
+
 	TArray<USpawnLocation*> SpawnLocations = GetSpawnLocations();
 	NumberMonsters = FMath::Clamp(NumberMonsters, 1, SpawnLocations.Num());
 
@@ -56,6 +63,26 @@ void ATile::PopulateTile(FVector CameraPosition, int NumberMonsters)
 		USpawnLocation* SpawnLocation = SpawnLocations[index];
 		SpawnLocations.RemoveAt(index);
 
-		UE_LOG(LogTemp, Warning, TEXT("Monster at %s"), *SpawnLocation->GetComponentLocation().ToString());
+		FVector Location = SpawnLocation->GetComponentLocation() + FVector(0, 0, -20);
+		FRotator LookAtCameraRotation = UKismetMathLibrary::FindLookAtRotation(Location, CameraPosition);
+		float Yaw = LookAtCameraRotation.Yaw - 90 + 180 * FMath::RandRange(0, 1) + FMath::RandRange(-30.f, 30.f);
+		SpawnMonster(Location, FRotator(0, Yaw, 0));
 	}
+}
+
+void ATile::SwitchToMask() 
+{
+	for (AMonster* Monster: Monsters)
+	{
+		Monster->SwitchToMask();
+	}
+}
+
+void ATile::ClearTile()
+{
+	for (AMonster* Monster: Monsters)
+	{
+		Monster->Destroy();
+	}
+	Monsters.Empty();
 }

@@ -26,7 +26,7 @@ public:
 	UTexture2D* GetMonsterMask(FString MonsterName) const;
 
 protected:
-	UFUNCTION(BlueprintImplementableEvent, meta = (AllowPrivateAccess = "true"))
+	UFUNCTION(BlueprintImplementableEvent)
 	void LoadMonsterTexturesAndMasks();
 
 private:
