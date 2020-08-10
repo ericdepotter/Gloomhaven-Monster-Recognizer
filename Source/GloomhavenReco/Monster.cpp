@@ -62,6 +62,7 @@ void AMonster::BeginPlay()
 
 FBox2D AMonster::GetScreenBoundingBox() const
 {
+	//https://answers.unrealengine.com/questions/885132/how-to-create-tight-2d-bounding-boxes-for-actors-i.html
 	//FBox BoundingBox = Monster->GetStaticMesh()->GetBoundingBox();
 	FBox BoundingBox = GetComponentsBoundingBox(true);
 	FVector Extent = BoundingBox.GetExtent();
@@ -91,4 +92,9 @@ FBox2D AMonster::GetScreenBoundingBox() const
 	}
 	
 	return ActorBox2D;
+}
+
+FString AMonster::GetMonsterName() const
+{
+	return MonsterName;
 }

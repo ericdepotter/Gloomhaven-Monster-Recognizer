@@ -97,3 +97,27 @@ void ATile::ClearTile()
 	}
 	Monsters.Empty();
 }
+
+TArray<FString> ATile::GetBoundingBoxDescriptionsOfMonsters() const
+{
+	TArray<FString> result;
+	result.Add("Monster,Center_X,Center_Y,Width,Height");
+
+	for (AMonster* Monster: Monsters)
+	{
+		TArray<FString> MonsterDescription;
+		FBox2D BoundingBox = Monster->GetScreenBoundingBox();
+		FVector2D Center = BoundingBox.GetCenter();
+		FVector2D Size = BoundingBox.GetExtent();
+		
+		MonsterDescription.Add(Monster->GetMonsterName());
+		MonsterDescription.Add(FString::SanitizeFloat(Center.X));
+		MonsterDescription.Add(FString::SanitizeFloat(Center.Y));
+		MonsterDescription.Add(FString::SanitizeFloat(Size.X));
+		MonsterDescription.Add(FString::SanitizeFloat(Size.Y));
+
+		result.Add(FString::Join(MonsterDescription, TEXT(",")));
+	}
+
+	return result;
+}

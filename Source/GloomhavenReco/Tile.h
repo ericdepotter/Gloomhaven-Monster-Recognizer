@@ -32,6 +32,9 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void ClearTile();
 
+	UFUNCTION(BlueprintCallable)
+	TArray<FString> GetBoundingBoxDescriptionsOfMonsters() const;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;

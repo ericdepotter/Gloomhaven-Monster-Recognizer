@@ -28,6 +28,8 @@ public:
 	UFUNCTION(BlueprintCallable)
 	FBox2D GetScreenBoundingBox() const; 
 
+	FString GetMonsterName() const;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
