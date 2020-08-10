@@ -89,6 +89,8 @@ void ATile::SwitchToMask()
 
 void ATile::ClearTile()
 {
+	StaticMeshComponent->SetMaterial(0, TileMaterial);
+	
 	for (AMonster* Monster: Monsters)
 	{
 		Monster->Destroy();
