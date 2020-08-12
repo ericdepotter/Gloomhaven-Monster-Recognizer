@@ -121,3 +121,8 @@ TArray<FString> ATile::GetBoundingBoxDescriptionsOfMonsters() const
 
 	return result;
 }
+
+int ATile::GetNumberSpawnPoints() const
+{
+	return NumberSpawnPoints;
+}

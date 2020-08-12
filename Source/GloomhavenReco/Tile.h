@@ -35,6 +35,9 @@ public:
 	UFUNCTION(BlueprintCallable)
 	TArray<FString> GetBoundingBoxDescriptionsOfMonsters() const;
 
+	UFUNCTION(BlueprintCallable)
+	int GetNumberSpawnPoints() const;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -46,6 +49,8 @@ private:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Setup, meta = (AllowPrivateAccess = "true"))
 	UStaticMeshComponent* StaticMeshComponent = nullptr;
 
+	UPROPERTY(BlueprintReadWrite, Category = Monster, meta = (AllowPrivateAccess = "true"))
+	int NumberSpawnPoints;
 	UPROPERTY(BlueprintReadWrite, Category = Monster, meta = (AllowPrivateAccess = "true"))
 	TArray<AMonster*> Monsters;
 
