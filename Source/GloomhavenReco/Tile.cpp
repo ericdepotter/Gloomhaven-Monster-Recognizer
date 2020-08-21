@@ -5,6 +5,7 @@
 #include "Tile.h"
 #include "Kismet/KismetMathLibrary.h"
 #include "Math/UnrealMathUtility.h"
+#include "Engine.h"
 
 // Sets default values
 ATile::ATile()
@@ -101,20 +102,26 @@ void ATile::ClearTile()
 TArray<FString> ATile::GetBoundingBoxDescriptionsOfMonsters() const
 {
 	TArray<FString> result;
-	result.Add("Monster,Center_X,Center_Y,Width,Height");
+	//result.Add("Monster,Center_X,Center_Y,Width,Height");
 
 	for (AMonster* Monster: Monsters)
 	{
 		TArray<FString> MonsterDescription;
 		FBox2D BoundingBox = Monster->GetScreenBoundingBox();
 		FVector2D Center = BoundingBox.GetCenter();
-		FVector2D Size = BoundingBox.GetExtent();
-		
+		FVector2D Size = BoundingBox.GetSize();
+
+		FVector2D ScreenSize = FVector2D(1, 1);
+		if (GEngine && GEngine->GameViewport)
+		{
+			GEngine->GameViewport->GetViewportSize(ScreenSize);
+		}
+
 		MonsterDescription.Add(Monster->GetMonsterName());
-		MonsterDescription.Add(FString::SanitizeFloat(Center.X));
-		MonsterDescription.Add(FString::SanitizeFloat(Center.Y));
-		MonsterDescription.Add(FString::SanitizeFloat(Size.X));
-		MonsterDescription.Add(FString::SanitizeFloat(Size.Y));
+		MonsterDescription.Add(FString::SanitizeFloat((ScreenSize.X - Center.X) / ScreenSize.X));
+		MonsterDescription.Add(FString::SanitizeFloat((ScreenSize.Y - Center.Y) / ScreenSize.Y));
+		MonsterDescription.Add(FString::SanitizeFloat(Size.X / ScreenSize.X));
+		MonsterDescription.Add(FString::SanitizeFloat(Size.Y / ScreenSize.Y));
 
 		result.Add(FString::Join(MonsterDescription, TEXT(",")));
 	}
