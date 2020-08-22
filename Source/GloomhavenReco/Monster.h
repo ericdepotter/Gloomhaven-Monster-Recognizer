@@ -25,6 +25,9 @@ public:
 	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable)
 	void SwitchToMask();
 
+	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable)
+	void SwitchToBlack();
+
 	UFUNCTION(BlueprintCallable)
 	FBox2D GetScreenBoundingBox() const; 
 

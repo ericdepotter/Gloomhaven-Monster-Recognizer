@@ -84,7 +84,7 @@ void ATile::SwitchToMask()
 
 	for (AMonster* Monster: Monsters)
 	{
-		Monster->SwitchToMask();
+		Monster->SwitchToBlack();
 	}
 }
 
