@@ -1,6 +1,6 @@
 # Gloomhaven-Monster-Recognizer
 
-![Monsters with corresponding mask and bounding boxes](https://storage.googleapis.com/kaggle-datasets-images/848556/1447582/31f783a7927230cb9a8af4801b5f0515/dataset-cover.png?t=2020-08-28-17-26-54)
+![Monsters with corresponding mask and bounding boxes](https://raw.githubusercontent.com/ericdepotter/Gloomhaven-Monster-Recognizer/master/cover.png)
 
 This repository contains all the code to train CNNs to detect monsters from the board game Gloomhaven on video stream. From generating a synthetic dataset to preparing this data and train two models: MaskRCNN and YoloV5.
 
