@@ -2,8 +2,7 @@
 #  1) directory: path/images/
 #  2) file: path/images.txt
 #  3) list: [path1/images/, path2/images/]
-train: "../input/synthetic-gloomhaven-monsters/images/train"
-val: "../input/synthetic-gloomhaven-monsters/images/val"
+val: "D:/test/images/train"
 
 # number of classes
 nc: 34
